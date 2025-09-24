@@ -36,25 +36,30 @@ A **Node.js + Express + MongoDB** backend system that manages **Products, Orders
 git clone https://github.com/Kirucoderanger/ecommerce-api.git
 cd ecommerce-api
 
-## Install dependencies
+---
+
 ```bush
+## Install dependencies
 npm install
 
-```
+---
 
 ⚙️ Environment Setup
-
 Create a .env file in root:
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/ecommerce
 JWT_SECRET=your-secret-key
+---
 
 ▶️ Running the Server
+```bush
 # Development
 npm run dev
 
 # Production
 npm start
+
+---
 
 📚 API Endpoints
 🔑 Auth
