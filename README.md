@@ -33,11 +33,14 @@ A **Node.js + Express + MongoDB** backend system that manages **Products, Orders
 ## 📦 Installation
 ```bash
 # Clone repo
-git clone https://github.com/your-username/ecommerce-api.git
+git clone https://github.com/Kirucoderanger/ecommerce-api.git
 cd ecommerce-api
 
-# Install dependencies
+## Install dependencies
+```bush
 npm install
+
+```
 
 ⚙️ Environment Setup
 
