@@ -3,7 +3,7 @@ GET https://ecommerce-api-05ik.onrender.com/api/health
 
 
 ### Auth Routes
-POST https://ecommerce-api-05ik.onrender.com/api/register
+POST https://ecommerce-api-05ik.onrender.com/api/auth/register
 Content-Type: application/json
 
 {
@@ -12,3 +12,21 @@ Content-Type: application/json
     "password": "password123",
     "role": "customer"
 }
+
+
+### health check from localhost
+GET http://localhost:3000/api/health
+
+### register from localhost
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "testuser",
+    "email": "testuser@example.com",
+    "password": "password123",
+    "role": "customer"
+}
+
+### get all users from localhost
+GET http://localhost:3000/api/auth/users
