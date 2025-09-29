@@ -1,9 +1,9 @@
 ### health check
-GET http://localhost:3000/api/health
+GET https://ecommerce-api-05ik.onrender.com/api/health
 
 
 ### Auth Routes
-POST http://localhost:3000/api/auth/register
+POST https://ecommerce-api-05ik.onrender.com/api/register
 Content-Type: application/json
 
 {
