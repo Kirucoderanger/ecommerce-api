@@ -1,0 +1,14 @@
+### health check
+GET http://localhost:3000/api/health
+
+
+### Auth Routes
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "testuser",
+    "email": "testuser@example.com",
+    "password": "password123",
+    "role": "customer"
+}

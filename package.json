@@ -1,0 +1,40 @@
+{
+  "name": "ecommerce-api",
+  "version": "1.0.0",
+  "description": "E-Commerce Product & Order Management API with Inventory tracking",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "lint": "eslint ."
+  },
+  "keywords": ["ecommerce", "api", "nodejs", "express", "mongodb"],
+  "author": "Kirubel, Bettina & Anderson",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.18.1",
+    "morgan": "^1.10.1",
+    "body-parser": "^2.2.0",
+    "joi": "^18.0.1",
+    "jsdoc": "^4.0.4",
+    "mongodb": "^6.20.0",
+    "node": "^24.8.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "nodemon": "^3.1.0"
+  }
+}
