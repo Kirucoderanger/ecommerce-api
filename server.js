@@ -19,6 +19,7 @@ app.use(morgan('dev'));
 
 // routes
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api', require('./routes/productRoutes'));
 
 
 // health
