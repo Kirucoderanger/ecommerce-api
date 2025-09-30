@@ -9,3 +9,4 @@ module.exports = (uri) => {
       process.exit(1);
     });
 };
+

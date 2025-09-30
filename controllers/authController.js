@@ -4,17 +4,36 @@ const asyncHandler = require('../middleware/asyncHandler');
 const User = require('../models/User');
 
 exports.register = asyncHandler(async (req, res) => {
-  const { name, email, password, role } = req.body;
-  const existing = await User.findOne({ email });
-  if (existing) {
-    const err = new Error('Email already in use'); err.statusCode = 409; throw err;
+  const { name, email, passwordHash, role } = req.body;
+
+  // Check if user already exists
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.status(400).json({ message: 'User already exists' });
   }
-  const passwordHash = await bcrypt.hash(password, 10);
-  const user = await User.create({ name, email, passwordHash, role: role || 'customer' });
 
-  res.status(201).json({ id: user._id, email: user.email });
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(passwordHash, salt);
+
+  // Create user
+  const user = await User.create({
+    name,
+    email,
+    passwordHash: hashedPassword,
+    role
+  });
+
+  res.status(201).json({
+    message: 'User registered successfully',
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    }
+  });
 });
-
 
 exports.getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find().select('-password');
