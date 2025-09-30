@@ -13,7 +13,8 @@ Content-Type: application/json
     "role": "customer"
 }
 
-
+### Get all users
+GET https://ecommerce-api-05ik.onrender.com/api/auth/users
 ### health check from localhost
 GET http://localhost:3000/api/health
 
