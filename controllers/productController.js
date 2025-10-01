@@ -3,14 +3,14 @@ const asyncHandler = require('../middleware/asyncHandler')
 
 //create product
 exports.createProduct = asyncHandler(async (req, res) => {
-    const { name, description, price, category, sku, quantity } = req.body;
+    const { name, description, price, category, sku } = req.body;
     const newProduct = await product.create({
         name,
         description,
         price,
         category,
-        sku,
-        quantity
+        sku
+
     });
     res.status(201).json({
         message: 'Product created successfully',

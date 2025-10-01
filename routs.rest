@@ -8,8 +8,8 @@ Content-Type: application/json
 
 {
     "name": "testuser",
-    "email": "testuser@example.com",
-    "password": "password123",
+    "email": "testuser5@example.com",
+    "passwordHash": "password123",
     "role": "customer"
 }
 
@@ -36,14 +36,6 @@ GET http://localhost:3000/api/auth/users
 
 ### Product Routes
 
-
-
-### get all products from localhost
-GET http://localhost:3000/api/products
-
-### get product by id from localhost
-GET http://localhost:3000/api/products/productIdHere
-
 ### create a new product 
 POST http://localhost:3000/api/products 
 Content-Type: application/json
@@ -54,21 +46,64 @@ Content-Type: application/json
     "price": 19.99,
     "category": "Sample Category",
     "stock": 100,
-    "sku": "P-001",
-    "quantity": 50
+    "sku": "P-001"
 }
 
+### get all products from localhost
+GET http://localhost:3000/api/products
+
+### get product by id from localhost
+GET http://localhost:3000/api/products/68dd6569abddf86e265ded99
+
+
 ### update a product by id
-PUT http://localhost:3000/api/products/productIdHere
+PUT http://localhost:3000/api/products/68dd6569abddf86e265ded99
 Content-Type: application/json
+
 {
     "name": "Updated Product",
     "description": "This is an updated product description.",
     "price": 29.99,
     "category": "Updated Category",
     "stock": 150,
-    "sku": "P-001-U",
-    "quantity": 75
+    "sku": "P-001-U"
 }
 ### delete a product by id
-DELETE http://localhost:3000/api/products/productIDHere
+DELETE http://localhost:3000/api/products/68dd6569abddf86e265ded99
+
+###Testing on production
+
+###Get all products
+GET https://ecommerce-api-05ik.onrender.com/api/products
+
+##Get product by Id
+GET https://ecommerce-api-05ik.onrender.com/api/products/productid
+
+##Create new product
+GET https://ecommerce-api-05ik.onrender.com/api/products
+Content-Type: application/json
+
+{
+    "name": "Sample Product",
+    "description": "This is a sample product.",
+    "price": 19.99,
+    "category": "Sample Category",
+    "stock": 100,
+    "sku": "P-001"
+}
+
+### update a product by id
+PUT https://ecommerce-api-05ik.onrender.com/api/products/68dd6569abddf86e265ded99
+Content-Type: application/json
+
+{
+    "name": "Updated Product",
+    "description": "This is an updated product description.",
+    "price": 29.99,
+    "category": "Updated Category",
+    "stock": 150,
+    "sku": "P-001-U"
+}
+
+### delete a product by id
+DELETE https://ecommerce-api-05ik.onrender.com/api/products/68dd6569abddf86e265ded99
