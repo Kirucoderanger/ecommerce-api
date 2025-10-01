@@ -2,19 +2,39 @@
 GET https://ecommerce-api-05ik.onrender.com/api/health
 
 
-### Auth Routes
+### register user 
 POST https://ecommerce-api-05ik.onrender.com/api/auth/register
 Content-Type: application/json
 
 {
     "name": "testuser",
+
     "email": "testuser5@example.com",
+
+    "email": "testuser3@example.com",
+
     "passwordHash": "password123",
     "role": "customer"
 }
 
 ### Get all users
 GET https://ecommerce-api-05ik.onrender.com/api/auth/users
+
+### Get user profile
+GET https://ecommerce-api-05ik.onrender.com/api/auth/profile/68db1ef2ff3b7b27d4f5b22f
+
+### Delete user profile
+DELETE https://ecommerce-api-05ik.onrender.com/api/auth/profile/68db1ef2ff3b7b27d4f5b22f
+### Update user profile
+PUT https://ecommerce-api-05ik.onrender.com/api/auth/profile/68db1ef2ff3b7b27d4f5b22f
+Content-Type: application/json
+
+{
+    "name": "updateduser",
+    "email": "updateduser@example.com",
+    "passwordHash": "newpassword123"
+}
+
 ### health check from localhost
 GET http://localhost:3000/api/health
 
@@ -24,13 +44,14 @@ Content-Type: application/json
 
 {
     "name": "testuser",
-    "email": "testuser2@example.com",
+    "email": "testuser4@example.com",
     "passwordHash": "password123",
     "role": "customer"
 }
 
 ### get all users from localhost
 GET http://localhost:3000/api/auth/users
+
 
 
 
@@ -107,3 +128,20 @@ Content-Type: application/json
 
 ### delete a product by id
 DELETE https://ecommerce-api-05ik.onrender.com/api/products/68dd6569abddf86e265ded99
+=======
+### get profile from localhost
+GET http://localhost:3000/api/auth/profile/68db1ef2ff3b7b27d4f5b22f
+
+### update profile from localhost
+PUT http://localhost:3000/api/auth/profile/68db1ef2ff3b7b27d4f5b22f
+Content-Type: application/json
+
+{
+    "name": "updateduser",
+    "email": "updateduser@example.com",
+    "passwordHash": "newpassword123"
+}
+
+### delete profile from localhost
+DELETE http://localhost:3000/api/auth/profile/68dc1757f742f51892890f01
+
