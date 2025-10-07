@@ -169,6 +169,10 @@ Content-Type: application/json
 {
     "stock": 250
 }
+
+###Get all inventory
+GET http://localhost:3000/api/inventory
+
 ### delete inventory for a product
 DELETE http://localhost:3000/api/inventory/68dd6569abddf86e265ded99
 
@@ -207,3 +211,4 @@ Content-Type: application/json
 
 ### Delete order
 DELETE http://localhost:3000/api/orders/68dd6569abddf86e265ded99
+
