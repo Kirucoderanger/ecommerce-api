@@ -43,3 +43,67 @@ exports.getAllUsers = asyncHandler(async (req, res) => {
     data: users
   });
 });
+
+
+// Get user profile by ID
+exports.getProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password');
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  res.status(200).json({
+    message: 'User profile retrieved successfully',
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    }
+  });
+});
+
+
+// update user profile
+exports.updateProfile = asyncHandler(async (req, res) => {
+  const { name, email, passwordHash } = req.body;
+
+  // Find user by ID
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Update user fields
+  user.name = name || user.name;
+  user.email = email || user.email;
+  if (passwordHash) {
+    const salt = await bcrypt.genSalt(10);
+    user.passwordHash = await bcrypt.hash(passwordHash, salt);
+  }
+
+  await user.save();
+
+  res.status(200).json({
+    message: 'User profile updated successfully',
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    }
+  });
+});
+
+ // delete user (admin only) - Optional
+exports.deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+   res.status(200).json({
+    message: 'User deleted successfully'
+   });
+ });
