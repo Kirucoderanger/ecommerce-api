@@ -73,12 +73,6 @@ DELETE http://localhost:3000/api/products/68dd6569abddf86e265ded99
 
 ###Testing on production
 
-###Get all products
-GET https://ecommerce-api-05ik.onrender.com/api/products
-
-##Get product by Id
-GET https://ecommerce-api-05ik.onrender.com/api/products/productid
-
 ##Create new product
 GET https://ecommerce-api-05ik.onrender.com/api/products
 Content-Type: application/json
@@ -91,6 +85,14 @@ Content-Type: application/json
     "stock": 100,
     "sku": "P-001"
 }
+
+###Get all products
+GET https://ecommerce-api-05ik.onrender.com/api/products
+
+###Get product by Id
+GET https://ecommerce-api-05ik.onrender.com/api/products/68dd659cabddf86e265ded9c
+
+
 
 ### update a product by id
 PUT https://ecommerce-api-05ik.onrender.com/api/products/68dd6569abddf86e265ded99
