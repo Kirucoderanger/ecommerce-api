@@ -3,13 +3,14 @@ const asyncHandler = require('../middleware/asyncHandler')
 
 //create product
 exports.createProduct = asyncHandler(async (req, res) => {
-    const { name, description, price, category, sku } = req.body;
+    const { name, description, price, category, sku, imageUrl } = req.body;
     const newProduct = await product.create({
         name,
         description,
         price,
         category,
-        sku
+        sku,
+        imageUrl
 
     });
     res.status(201).json({
@@ -44,10 +45,10 @@ exports.getProductById = asyncHandler(async (req, res) => {
 //updating product
 exports.updateProduct = asyncHandler(async (req, res) => {
     const productId = req.params.id;
-    const { name, description, price, category, sku, quantity } = req.body;
+    const { name, description, price, category, sku, imageUrl } = req.body;
     const updatedProduct = await product.findByIdAndUpdate(
         productId,
-        { name, description, price, category, sku, quantity },
+        { name, description, price, category, sku, imageUrl },
         { new: true, runValidators: true }
     );
     if (!updatedProduct) {
