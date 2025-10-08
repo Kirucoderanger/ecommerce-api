@@ -1,6 +1,9 @@
-//Universal middlware for error handling
-const errorMiddleware = (err, req, res, next)=>{
-    res.status(500).json({ message: err.message });
-}
-
-module.exports = errorMiddleware;
+module.exports = (err, req, res, next) => {
+  console.error(err);
+  const status = err.statusCode || 500;
+  const payload = {
+    message: err.message || 'Internal Server Error'
+  };
+  if (err.details) payload.details = err.details;
+  res.status(status).json(payload);
+};
