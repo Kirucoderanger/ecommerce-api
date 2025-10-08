@@ -8,7 +8,7 @@ module.exports = {
         productId: joi.string().required(),
         quantity: joi.number().min(1).required()
       })).required(),
-      totalAmount: joi.number().min(0).required()
+      //totalAmount: joi.number().min(0).required()
     })
   },
   update: {
