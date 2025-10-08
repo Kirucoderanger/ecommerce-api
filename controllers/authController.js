@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const asyncHandler = require('../middleware/asyncHandler');
 const User = require('../models/User');
 
@@ -107,3 +107,27 @@ exports.deleteUser = asyncHandler(async (req, res) => {
     message: 'User deleted successfully'
    });
  });
+
+// User login
+exports.login = asyncHandler(async (req, res) => {
+  const { email, passwordHash } = req.body;
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(400).json({ message: 'Invalid email or password' });
+  }
+
+  const isMatch = await bcrypt.compare(passwordHash, user.passwordHash);
+  if (!isMatch) {
+    return res.status(400).json({ message: 'Invalid email or password' });
+  }
+
+  const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+    expiresIn: '1h'
+  });
+
+  res.status(200).json({
+    message: 'Login successful',
+    token
+  });
+});

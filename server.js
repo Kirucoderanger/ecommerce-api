@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const connectDb = require('./config/db');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDoc = require('./swagger-output.json')
-//const errorHandler = require('./middleware/errorMiddleware');
+const errorHandler = require('./middleware/errorMiddleware');
 
 dotenv.config();
 const app = express();
@@ -24,11 +24,18 @@ app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/inventory', require('./routes/inventoryRoutes'));
 
-//app.use(errorHandler);
+
 // health
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
 
 // error handler (last)
+app.use(errorHandler);
 
+// start server
+const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// handle unhandled rejections
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
+  server.close(() => process.exit(1));
+});
