@@ -1,8 +1,8 @@
 const express = require('express')
 const productController = require('../controllers/productController')
-
 const router = express.Router()
 
+let products = []; // In-memory product storage for demonstration purposes
 
 router.post('/', productController.createProduct)
 router.get('/', productController.getAllProducts)
