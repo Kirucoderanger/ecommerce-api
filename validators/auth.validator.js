@@ -5,14 +5,14 @@ module.exports = {
     body: Joi.object({
       name: Joi.string().min(2).required(),
       email: Joi.string().email().required(),
-      passwordHash: Joi.string().min(6).required(),
+      password: Joi.string().min(6).required(),
       role: Joi.string().valid('admin', 'customer').optional()
     })
   },
   login: {
     body: Joi.object({
       email: Joi.string().email().required(),
-      passwordHash: Joi.string().required()
+      password: Joi.string().required()
     })
   }
 };

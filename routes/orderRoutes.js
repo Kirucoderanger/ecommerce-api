@@ -1,6 +1,7 @@
 const express = require('express')
 const controller = require('../controllers/orderController');
 const auth = require('../middleware/authMiddleware');
+//const { protect, auth } = require('../middleware/authMiddleware');
 const validate = require('../middleware/validate');
 const { createOrder, updateOrder } = require('../validators/order.validator');
 
