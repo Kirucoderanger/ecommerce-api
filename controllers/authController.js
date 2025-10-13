@@ -107,9 +107,9 @@ exports.deleteUser = asyncHandler(async (req, res) => {
     message: 'User deleted successfully'
    });
  });
-
+/*
 // User login
-/*exports.login = asyncHandler(async (req, res) => {
+exports.login = asyncHandler(async (req, res) => {
   const { email, passwordHash } = req.body;
   const user = await User.findOne({ email });
 
@@ -145,5 +145,5 @@ exports.login = asyncHandler(async (req, res) => {
   }
   const payload = { id: user._id, role: user.role, email: user.email };
   const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' });
-  res.json({ token });
+  res.json({ token, user: payload });
 });

@@ -3,7 +3,7 @@ const joi = require('joi');
 module.exports = {
   create: {
     body: joi.object({
-      userId: joi.string().required(),
+      customerId: joi.string().required(),
       items: joi.array().items(joi.object({
         productId: joi.string().required(),
         quantity: joi.number().min(1).required()
