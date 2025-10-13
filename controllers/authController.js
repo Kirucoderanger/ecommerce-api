@@ -107,7 +107,7 @@ exports.deleteUser = asyncHandler(async (req, res) => {
     message: 'User deleted successfully'
    });
  });
-
+/*
 // User login
 exports.login = asyncHandler(async (req, res) => {
   const { email, passwordHash } = req.body;
@@ -130,4 +130,20 @@ exports.login = asyncHandler(async (req, res) => {
     message: 'Login successful',
     token
   });
+});
+*/
+
+exports.login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    const err = new Error('Invalid credentials'); err.statusCode = 401; throw err;
+  }
+  const match = await bcrypt.compare(password, user.passwordHash);
+  if (!match) {
+    const err = new Error('Invalid credentials'); err.statusCode = 401; throw err;
+  }
+  const payload = { id: user._id, role: user.role, email: user.email };
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' });
+  res.json({ token, user: payload });
 });

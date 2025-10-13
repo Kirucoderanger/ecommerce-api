@@ -1,12 +1,13 @@
 const orderService = require('../services/orderService');
 
 exports.create = async (req, res) => {
-  const order = await orderService.createOrder(req.body.userId, req.body.items);
+  const order = await orderService.createOrder(req.body.customerId, req.body.items);
   res.status(201).json(order);
 };
 
 exports.getMyOrders = async (req, res) => {
-  const orders = await orderService.getCustomerOrders(req.body.userId);
+  const customerId = req.params.id;
+  const orders = await orderService.getCustomerOrders(customerId);
   res.json(orders);
 };
 
