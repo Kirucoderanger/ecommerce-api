@@ -6,7 +6,8 @@ exports.create = async (req, res) => {
 };
 
 exports.getMyOrders = async (req, res) => {
-  const orders = await orderService.getCustomerOrders(req.body.customerId);
+  const customerId = req.params.id;
+  const orders = await orderService.getCustomerOrders(customerId);
   res.json(orders);
 };
 
