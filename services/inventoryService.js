@@ -1,17 +1,22 @@
-const Inventory = require('../models/Inventory');
+const inventory = require('../models/Inventory');
 
 exports.createInventory = async (data) => {
-  const inventory = new Inventory(data);
-  return await inventory.save();
+  const inv = new inventory(data);
+  return await inv.save();
+};
+
+exports.getAllInventory = async () => {
+  return await inventory.find();
 };
 
 exports.getInventory = async (productId) => {
-  return await Inventory.findOne({ productId }).populate('productId');
+  return await inventory.findOne({ productId });
 };
 
 exports.updateInventory = async (productId, stock) => {
-  return await Inventory.findOneAndUpdate({ productId }, { stock }, { new: true });
+  return await inventory.findOneAndUpdate({ productId }, { stock }, { new: true });
 };
+
 exports.deleteInventory = async (productId) => {
-  return await Inventory.findOneAndDelete({ productId });
+  return await inventory.findOneAndDelete({ productId });
 };

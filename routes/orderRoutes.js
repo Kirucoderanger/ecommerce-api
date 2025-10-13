@@ -1,6 +1,7 @@
 const express = require('express')
 const controller = require('../controllers/orderController');
 const auth = require('../middleware/authMiddleware');
+//const { protect, auth } = require('../middleware/authMiddleware');
 const validate = require('../middleware/validate');
 const { createOrder, updateOrder } = require('../validators/order.validator');
 
@@ -13,5 +14,6 @@ router.get('/my', auth(['customer']), controller.getMyOrders);
 router.get('/', auth(['admin']), controller.getAll);
 router.put('/:id/status', auth(['admin']), validate(updateOrder), controller.updateStatus);
 router.delete('/:id', auth(['admin']), controller.delete);
+router.get('/:id', auth(['customer']), controller.getMyOrders);
 
 module.exports = router;

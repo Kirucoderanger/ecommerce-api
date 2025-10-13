@@ -12,7 +12,7 @@ module.exports = {
   login: {
     body: Joi.object({
       email: Joi.string().email().required(),
-      passwordHash: Joi.string().required()
+      password: Joi.string().required()
     })
   }
 };
