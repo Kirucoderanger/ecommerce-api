@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.38% </span>
+                <span class="strong">31.81% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/21</span>
+                <span class='fraction'>7/22</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.89% </span>
+                <span class="strong">35% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/19</span>
+                <span class='fraction'>7/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -91,7 +91,9 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -99,14 +101,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
@@ -120,33 +122,34 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const orderService = require('../services/orderService');
+const asyncHandler = require('../middleware/asyncHandler') // to handle async errors in express routes
 &nbsp;
 exports.create = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
   const order = <span class="cstat-no" title="statement not covered" >await orderService.createOrder(req.body.customerId, req.body.items);</span>
 <span class="cstat-no" title="statement not covered" >  res.status(201).json(order);</span>
-};
+}
 &nbsp;
-exports.getMyOrders = async (req, res) =&gt; {
-  const customerId = req.params.id;
-  const orders = await orderService.getCustomerOrders(customerId);
-  res.json(orders);
-};
+exports.getMyOrders = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+  const customerId = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
+  const orders = <span class="cstat-no" title="statement not covered" >await orderService.getCustomerOrders(customerId);</span>
+<span class="cstat-no" title="statement not covered" >  res.json(orders);</span>
+}
 &nbsp;
-exports.getAll = async (req, res) =&gt; {
-  const orders = await orderService.getAllOrders();
-  res.json(orders);
-};
+exports.getAll = asyncHandler(<span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+  const orders = <span class="cstat-no" title="statement not covered" >await orderService.getAllOrders();</span>
+<span class="cstat-no" title="statement not covered" >  res.json(orders);</span>
+});
 &nbsp;
-exports.updateStatus = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+exports.updateStatus = asyncHandler(<span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
   const order = <span class="cstat-no" title="statement not covered" >await orderService.updateOrderStatus(req.params.id, req.body.status);</span>
 <span class="cstat-no" title="statement not covered" >  if (!order) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Order not found' });</span></span>
 <span class="cstat-no" title="statement not covered" >  res.json(order);</span>
-};
-exports.delete = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+});
+exports.delete = asyncHandler(<span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
   const order = <span class="cstat-no" title="statement not covered" >await orderService.deleteOrder(req.params.id);</span>
 <span class="cstat-no" title="statement not covered" >  if (!order) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Order not found' });</span></span>
 <span class="cstat-no" title="statement not covered" >  res.json({ message: 'Order deleted successfully' });</span>
-};
+});
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -154,7 +157,7 @@ exports.delete = <span class="fstat-no" title="function not covered" >as</span>y
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-13T16:59:55.573Z
+                at 2025-10-13T17:41:51.062Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

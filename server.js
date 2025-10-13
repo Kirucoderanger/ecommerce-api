@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passportConfig(passport);
 */
-
+/*
 // routes
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/auth', require('./routes/authRoutes'));
