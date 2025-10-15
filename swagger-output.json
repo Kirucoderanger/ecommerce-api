@@ -5,19 +5,39 @@
     "description": "A simple CRUD API for managing products, orders, and inventory",
     "version": "1.0.0"
   },
-  "host": "ecommerce-api-05ik.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
-  "securityDefinitions": {
-    "bearerAuth": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header",
-      "description": "Enter token as **Bearer <JWT>**"
+
+
+  
+ 
+
+
+
+ "securityDefinitions": {
+  "oauth2": {
+    "type": "oauth2",
+    "flow": "password",
+    "tokenUrl": "/api/auth/token",
+    "scopes": {
+      "read": "Read access to protected resources",
+      "write": "Write access to protected resources"
     }
-  },
+  }
+},
+
+
+
+
+
+
+
+
+
+
   "paths": {
     "/api/health": {
       "get": {
@@ -29,6 +49,40 @@
         }
       }
     },
+    "/api/auth/token": {
+  "post": {
+    "tags": ["Auth"],
+    "summary": "Obtain OAuth2 access token",
+    "consumes": ["application/x-www-form-urlencoded"],
+    "parameters": [
+      {
+        "name": "grant_type",
+        "in": "formData",
+        "required": true,
+        "type": "string",
+        "default": "password"
+      },
+      {
+        "name": "username",
+        "in": "formData",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "name": "password",
+        "in": "formData",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "responses": {
+      "200": { "description": "Access token" },
+      "400": { "description": "Invalid request" },
+      "401": { "description": "Unauthorized" }
+    }
+  }
+},
+
     "/api/auth/register": {
       "post": {
         "description": "",
@@ -791,8 +845,6 @@
     }
   },
   "security": [
-    {
-      "bearerAuth": []
-    }
-  ]
+  { "oauth2": ["read", "write"] }
+]
 }

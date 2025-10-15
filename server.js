@@ -188,17 +188,26 @@ const swaggerUi = require('swagger-ui-express');
 const fs = require('fs');
 const path = require('path');
 const errorHandler = require('./middleware/errorMiddleware');
+const cors = require('cors');
 
 dotenv.config();
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 // Connect database
 connectDb(process.env.MONGO_URI);
+app.use(express.json());
+
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({ extended: true }));
+
 
 // Middlewares
-app.use(express.json());
+//app.use(express.json());
 app.use(morgan('dev'));
+
+
 
 // Load Swagger JSON
 const swaggerPath = path.join(__dirname, 'swagger-output.json');

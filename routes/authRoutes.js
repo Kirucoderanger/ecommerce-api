@@ -16,5 +16,10 @@ router.get('/users', auth(['admin']), authController.getAllUsers);
 router.get('/profile/:id', auth(), authController.getProfile);
 router.put('/profile/:id', auth(), authController.updateProfile);
 router.delete('/profile/:id', auth(), authController.deleteUser);
+// OAuth2 token endpoint
+router.post('/token', authController.token);
+
+// Optional refresh token endpoint
+router.post('/refresh', authController.refreshToken);
 
 module.exports = router;
