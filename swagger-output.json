@@ -5,10 +5,10 @@
     "description": "A simple CRUD API for managing products, orders, and inventory",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "ecommerce-api-05ik.onrender",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
 
 
